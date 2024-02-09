@@ -4,8 +4,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        "light-grey": "#f4f5f9",
-        "bluish-purple": "#8278c5",
+        "light-grey": "#c2c5aa",
+        "light-green": "#a4ac86",
+        "light-brown": "#a68a64",
+        "darker-brown": "#936639",
+        "lightest-brown": "#b6ad90",
+        "dark-green": "#656d4a",
       },
     },
   },
