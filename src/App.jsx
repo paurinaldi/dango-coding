@@ -1,12 +1,12 @@
-import List from "./components/sections/list";
-import Header from "./components/sections/header";
+import List from "/src/components/sections/list";
+import Header from "/src/components/sections/header";
 import { SettingsProvider } from "./context";
 
 const App = () => {
   return (
     <SettingsProvider>
       <Header />
-      <div className="bg-light-grey box-border min-h-screen min-w-full p-20">
+      <div className="box-border min-h-screen min-w-full bg-light-grey p-20">
         <List />
       </div>
     </SettingsProvider>

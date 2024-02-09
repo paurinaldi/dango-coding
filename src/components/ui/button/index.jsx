@@ -3,7 +3,7 @@ const Button = ({ title, onClick }) => {
     <button
       type="button"
       onClick={onClick}
-      className="bg-light-brown hover:bg-darker-brown text-slate-50 font-bold py-2 px-4 rounded"
+      className="rounded bg-light-brown px-4 py-2 font-bold text-slate-50 hover:bg-darker-brown"
     >
       {title}
     </button>

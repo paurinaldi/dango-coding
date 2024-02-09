@@ -5,7 +5,7 @@ const Header = () => {
   const { toggleSettings } = useSettings();
 
   return (
-    <header className="bg-dark-green text-light-grey justify-between px-4 flex fixed min-w-full md:px-28 py-4">
+    <header className="fixed flex min-w-full justify-between bg-dark-green px-4 py-4 text-light-grey md:px-28">
       <h1 className="text-2xl font-semibold">Tourmaline Soaps</h1>
       <div className="text-xs">
         <Button title={"Edit titles"} onClick={toggleSettings} />

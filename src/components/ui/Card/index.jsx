@@ -1,53 +1,47 @@
-import { useSettings } from "../../../context";
-import Link from "../link";
+import { useState } from "react";
+import { useSettings } from "/src/context";
 import Button from "/src/components/ui/button";
 import Input from "/src/components/ui/input";
-import { useState } from "react";
+import TitleEditor from "/src/components/ui/titleEditor";
+import validateTitle from "/src/utils";
 
 const Card = ({ soap }) => {
-  const { id, img, name, description, price } = soap;
   const { showSettings } = useSettings();
+
+  const { id, img, name, description, price } = soap;
 
   const [title, setTitle] = useState(name);
   const [error, setError] = useState(false);
   const [isTextOverflowing, setIsTextOverflowing] = useState(false);
+  const [fontSize, setFontSize] = useState("18px");
 
   const handleTitleChange = (event) => {
     const newTitle = event.target.value.trim();
-    const words = newTitle.split(/\s+/);
-    const titleLength = newTitle.length;
-    const longestWordLength = Math.max(...words.map((word) => word.length));
-    const hasSpace = /\s/.test(newTitle);
+    const { error, isTextOverflowing } = validateTitle(newTitle);
+    setError(error);
+    setIsTextOverflowing(isTextOverflowing);
 
-    if (
-      (!hasSpace && titleLength > 15) ||
-      (hasSpace && longestWordLength > 15)
-    ) {
-      setError(true);
-      setIsTextOverflowing(true);
-    } else if (titleLength > 40) {
-      setError(true);
-      setIsTextOverflowing(false);
-    } else {
-      setError(false);
-      setIsTextOverflowing(false);
-      setTitle(newTitle);
-    }
+    if (!error || !isTextOverflowing) setTitle(newTitle);
+  };
+
+  const handleFontSizeChange = (event) => {
+    setFontSize(`${event.target.value}px`);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-5 bg-slate-50 max-w-72 max-h-fit p-6 shadow-xl rounded-md border border-light-green">
+    <div className="flex max-h-fit max-w-72 flex-col items-center justify-center space-y-5 rounded-md border border-light-green bg-slate-50 p-6 shadow-xl">
       <img
-        className="w-full h-28 object-cover rounded-lg"
+        className="h-28 w-full rounded-lg object-cover"
         key={id}
         src={img}
         alt={name}
       />
-      <div className="min-h-14 break-words line-clamp-2">
+      <div className="line-clamp-2 min-h-14 break-words">
         <h2
           className={`text-lg font-bold text-dark-green ${
             isTextOverflowing ? "overflow-clip" : ""
           }`}
+          style={{ fontSize: fontSize }}
         >
           {title}
         </h2>
@@ -56,28 +50,22 @@ const Card = ({ soap }) => {
         <p className="text-lg font-semibold">${price}</p>
         <Input />
       </div>
-      <p className="text-sm pb-5">{description}</p>
+      <p className="pb-5 text-sm">{description}</p>
       <Button title={"Add to cart"} />
-      <Link title={"Learn more"} src="#" />
+      <a
+        className="cursor-pointer border-b border-light-green hover:border-dark-green"
+        href="#"
+      >
+        Learn more
+      </a>
       {showSettings && (
-        //TODO: Move to another component? Link comp neccessary?
-        <div className="flex flex-col">
-          <textarea
-            type="input"
-            placeholder={"Type to change title"}
-            onChange={handleTitleChange}
-            className="border-lightest-brown border border-opacity-40 rounded-md text-center focus:outline-none break-all"
-          />
-          <span
-            className={
-              error ? "text-xs text-red-700 pt-2" : "invisible text-xs pt-2"
-            }
-          >
-            {isTextOverflowing
-              ? "Words must be up to 15 characters long"
-              : "Title must be up to 40 characters long"}
-          </span>
-        </div>
+        <TitleEditor
+          onChange={handleTitleChange}
+          error={error}
+          isTextOverflowing={isTextOverflowing}
+          fontSize={fontSize}
+          onFontSizeChange={handleFontSizeChange}
+        />
       )}
     </div>
   );
