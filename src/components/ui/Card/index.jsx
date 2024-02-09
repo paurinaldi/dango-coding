@@ -10,16 +10,31 @@ const Card = ({ soap }) => {
 
   const [title, setTitle] = useState(name);
   const [error, setError] = useState(false);
+  const [isTextOverflowing, setIsTextOverflowing] = useState(false);
 
   const handleTitleChange = (event) => {
-    const newTitle = event.target.value;
-    if (newTitle.length <= 40) {
-      setTitle(newTitle);
-      setError(false);
-    } else {
+    const newTitle = event.target.value.trim();
+    const words = newTitle.split(/\s+/);
+    const titleLength = newTitle.length;
+    const longestWordLength = Math.max(...words.map((word) => word.length));
+    const hasSpace = /\s/.test(newTitle);
+
+    if (
+      (!hasSpace && titleLength > 15) ||
+      (hasSpace && longestWordLength > 15)
+    ) {
       setError(true);
+      setIsTextOverflowing(true);
+    } else if (titleLength > 40) {
+      setError(true);
+      setIsTextOverflowing(false);
+    } else {
+      setError(false);
+      setIsTextOverflowing(false);
+      setTitle(newTitle);
     }
   };
+
   return (
     <div className="flex flex-col items-center justify-center space-y-5 bg-slate-50 max-w-72 max-h-fit p-6 shadow-xl rounded-md border border-light-green">
       <img
@@ -28,8 +43,12 @@ const Card = ({ soap }) => {
         src={img}
         alt={name}
       />
-      <div className="min-h-14">
-        <h2 className="text-lg font-bold text-dark-green break-words">
+      <div className="min-h-14 break-words line-clamp-2">
+        <h2
+          className={`text-lg font-bold text-dark-green ${
+            isTextOverflowing ? "overflow-clip" : ""
+          }`}
+        >
           {title}
         </h2>
       </div>
@@ -47,14 +66,16 @@ const Card = ({ soap }) => {
             type="input"
             placeholder={"Type to change title"}
             onChange={handleTitleChange}
-            className="border-lightest-brown border border-opacity-40 rounded-md text-center focus:outline-none"
+            className="border-lightest-brown border border-opacity-40 rounded-md text-center focus:outline-none break-all"
           />
           <span
             className={
               error ? "text-xs text-red-700 pt-2" : "invisible text-xs pt-2"
             }
           >
-            Title must be up to 40 characters long
+            {isTextOverflowing
+              ? "Words must be up to 15 characters long"
+              : "Title must be up to 40 characters long"}
           </span>
         </div>
       )}
