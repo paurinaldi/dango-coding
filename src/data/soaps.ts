@@ -6,6 +6,7 @@ export const soaps = [
     description:
       "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
     img: "src/assets/img/eucalyptus.png",
+    quantity: 1,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const soaps = [
     description:
       "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
     img: "src/assets/img/argan.png",
+    quantity: 1,
   },
   {
     id: 3,
@@ -22,6 +24,7 @@ export const soaps = [
     description:
       "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
     img: "src/assets/img/tea.png",
+    quantity: 1,
   },
   {
     id: 4,
@@ -30,6 +33,7 @@ export const soaps = [
     description:
       "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
     img: "src/assets/img/unscented.png",
+    quantity: 1,
   },
   {
     id: 5,
@@ -38,6 +42,7 @@ export const soaps = [
     description:
       "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
     img: "src/assets/img/aloe.png",
+    quantity: 1,
   },
   {
     id: 6,
@@ -46,5 +51,6 @@ export const soaps = [
     description:
       "Recharge your skin with the super energizing power of finely crushed tourmaline powder blended with natural complexion",
     img: "src/assets/img/coffee.png",
+    quantity: 1,
   },
 ];
