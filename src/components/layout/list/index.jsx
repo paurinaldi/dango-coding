@@ -1,4 +1,4 @@
-import Card from "/src/components/ui/cards";
+import Card from "/src/components/ui/card";
 
 const List = ({ soaps, handleCartUpdate }) => {
   return (

@@ -1,8 +1,13 @@
-# React + Vite
+### Dango Front End Coding Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project displays a list of products simulating an e-commerce to test Front End skills. It was developed using React.Js and TailwindCSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- List of mocked products with their respective information.
+- Inputs to edit products' titles dynamically(text and size).
+- Inputs to add items to shopping cart and display total amount.
+
+## Deployed on Vercel
+
+https://dango-coding-nine.vercel.app/
