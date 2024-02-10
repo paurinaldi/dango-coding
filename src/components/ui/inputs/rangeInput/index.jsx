@@ -1,6 +1,6 @@
 const RangeInput = ({ onChange, max, min, id, value }) => (
   <>
-    <label htmlFor="fontSizeRange" className="text-sm text-dark-green">
+    <label htmlFor="fontSizeRange" className="pt-2 text-sm text-dark-green">
       Font size
     </label>
     <input

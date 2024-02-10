@@ -11,20 +11,20 @@ const Card = ({ soap, handleCartUpdate }) => {
 
   const [productQuantity, setProductQuantity] = useState(quantity);
   const [title, setTitle] = useState(name);
-  const [error, setError] = useState(false);
   const [submitCart, setSubmitCart] = useState(false);
   const [fontSize, setFontSize] = useState("text-xl");
 
-  const fontSizeRange = ["text-sm", "text-base", "text-lg", "text-xl"];
+  const fontSizeRange = [
+    "text-sm",
+    "text-base",
+    "text-lg",
+    "text-xl",
+    "text-2xl",
+  ];
 
   const handleTitleChange = (event) => {
     const newTitle = event.target.value.trim();
-    if (newTitle.length > 40) {
-      setError(true);
-    } else {
-      setTitle(newTitle);
-      setError(false);
-    }
+    setTitle(newTitle);
   };
 
   const handleFontSizeChange = (value) => {
@@ -53,13 +53,11 @@ const Card = ({ soap, handleCartUpdate }) => {
         src={img}
         alt={name}
       />
-      <div className="min-h-14">
-        <h2
-          className={`line-clamp-2 max-w-56  overflow-hidden break-words ${fontSize} font-bold text-dark-green`}
-        >
-          {title}
-        </h2>
-      </div>
+      <h2
+        className={`line-clamp-2 max-h-fit min-h-16 max-w-56 overflow-hidden break-words ${fontSize} font-bold text-dark-green`}
+      >
+        {title}
+      </h2>
       <div className="flex w-full justify-around border-t border-light-green p-4">
         <p className="text-lg font-semibold">${price}</p>
         <NumberInput
@@ -81,7 +79,6 @@ const Card = ({ soap, handleCartUpdate }) => {
       {showSettings && (
         <TitleEditor
           onChange={handleTitleChange}
-          error={error}
           fontSize={fontSize}
           handleFontSizeChange={handleFontSizeChange}
           fontSizeRange={fontSizeRange}
